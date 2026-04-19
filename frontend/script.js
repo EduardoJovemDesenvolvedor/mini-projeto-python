@@ -23,13 +23,18 @@ async function listarTarefas() {
 // ADICIONAR TAREFA
 async function adicionarTarefa() {
     console.log("clicou adicionar");
+    
     const input = document.getElementById("novaTarefa");
     const nome = input.value;
 
     if (!nome) return;
 
-    await fetch(`${API}/tarefas?nome=${nome}`, {
-        method: "POST"
+    await fetch(`${API}/tarefas`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ nome })
     });
 
     input.value = "";
@@ -38,11 +43,15 @@ async function adicionarTarefa() {
 
 // DELETAR TAREFA
 async function deletarTarefa(indice) {
-    await fetch(`${API}/tarefas/${indice}`, {
+    console.log("clicou excluir");
+    const resposta = await fetch(`${API}/tarefas/${indice}`, {
         method: "DELETE"
     });
 
-    listarTarefas();
+    const dados = await resposta.json();
+    console.log("DELETE:", dados);
+
+    await listarTarefas();
 }
 
 // CARREGAR AUTOMATICAMENTE

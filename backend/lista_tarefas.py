@@ -13,8 +13,12 @@ def adicionar_tarefa(nome):
 
 
 def listar_tarefas():
-    return {"tarefas": tarefas}
-
+    return {
+        "tarefas": [
+            {"id": i, "nome": tarefa}
+            for i, tarefa in enumerate(tarefas)
+        ]
+    }
 
 def renomear_tarefa(indice, novo_nome):
     if 0 <= indice < len(tarefas):

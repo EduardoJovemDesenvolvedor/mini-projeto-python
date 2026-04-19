@@ -54,8 +54,6 @@ def renomear_tarefa(indice: int, novo_nome: str):
     
 @app.delete('/tarefas/{indice}')
 def deletar_tarefa(indice: int):
-    indice -= 1
-
     resultado = backend.lista_tarefas.deletar_tarefa(indice)
 
     if resultado:
