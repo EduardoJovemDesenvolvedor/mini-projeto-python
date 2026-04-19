@@ -1,0 +1,142 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fundo da página */
+body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container principal */
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 450px;
+    max-width: 95%;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+/* Área adicionar */
+.adicionar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Input */
+input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #3b82f6;
+}
+
+/* Botões */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+/* Área ações */
+.acoes {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Lista */
+ul {
+    list-style: none;
+}
+
+/* Item da lista */
+li {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: 0.2s;
+}
+
+li:hover {
+    background: #e2e8f0;
+}
+
+/* Botões dentro da lista */
+li button {
+    margin-left: 5px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* Botão deletar */
+li button:nth-child(1) {
+    background: #ef4444;
+}
+
+li button:nth-child(1):hover {
+    background: #dc2626;
+}
+
+/* Botão renomear */
+li button:nth-child(2) {
+    background: #f59e0b;
+}
+
+li button:nth-child(2):hover {
+    background: #d97706;
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
+
+    .container {
+        padding: 20px;
+    }
+
+    .adicionar {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+}
