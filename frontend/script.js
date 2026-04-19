@@ -22,6 +22,7 @@ async function listarTarefas() {
 
 // ADICIONAR TAREFA
 async function adicionarTarefa() {
+    console.log("clicou adicionar");
     const input = document.getElementById("novaTarefa");
     const nome = input.value;
 
