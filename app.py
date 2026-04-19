@@ -3,6 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 import os
 import backend.lista_tarefas
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -25,9 +26,16 @@ def listar_tarefas_route():
         ]
     }
 
-@app.post('/tarefas')
-def adicionar_tarefas(nome : str) :
-    return { 'Adicionar ': backend.lista_tarefas.adicionar_tarefa(nome)}
+
+
+class Tarefa(BaseModel):
+    nome: str
+
+@app.post("/tarefas")
+def adicionar_tarefas(tarefa: Tarefa):
+    return {
+        "adicionado": backend.lista_tarefas.adicionar_tarefa(tarefa.nome)
+    }
 
 @app.put('/tarefas/{indice}')
 def renomear_tarefa(indice: int, novo_nome: str):

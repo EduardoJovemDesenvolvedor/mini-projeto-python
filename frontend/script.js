@@ -1,4 +1,4 @@
-const API = "https://mini-projeto-python.onrender.com/";
+const API = "https://mini-projeto-python.onrender.com";
 
 // LISTAR TAREFAS
 async function listarTarefas() {
