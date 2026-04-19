@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+const API = "https://mini-projeto-python.onrender.com/";
 
 // LISTAR TAREFAS
 async function listarTarefas() {
