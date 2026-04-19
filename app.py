@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
-import lista_tarefas
+import os
+import backend.lista_tarefas
 
 app = FastAPI()
 
@@ -9,12 +10,13 @@ app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
 
 @app.get("/", response_class=HTMLResponse)
 def home():
-    with open("../frontend/index.html", encoding="utf-8") as f:
+    path = os.path.join("frontend", "index.html")
+    with open(path, encoding="utf-8") as f:
         return f.read()
     
 @app.get('/listar_tarefas')
 def listar_tarefas_route():
-    tarefas = lista_tarefas.listar_tarefas()
+    tarefas = backend.lista_tarefas.listar_tarefas()
 
     return {
         "tarefas": [
@@ -25,17 +27,17 @@ def listar_tarefas_route():
 
 @app.post('/tarefas')
 def adicionar_tarefas(nome : str) :
-    return { 'Adicionar ': lista_tarefas.adicionar_tarefa(nome)}
+    return { 'Adicionar ': backend.lista_tarefas.adicionar_tarefa(nome)}
 
 @app.put('/tarefas/{indice}')
 def renomear_tarefa(indice: int, novo_nome: str):
     indice -= 1
-    resultado = lista_tarefas.renomear_tarefa(indice, novo_nome)
+    resultado = backend.lista_tarefas.renomear_tarefa(indice, novo_nome)
 
     if resultado:
         return {
             "mensagem": "Tarefa renomeada com sucesso",
-            "tarefas": lista_tarefas.listar_tarefas()
+            "tarefas": backend.lista_tarefas.listar_tarefas()
         }
     else:
         return {
@@ -46,12 +48,12 @@ def renomear_tarefa(indice: int, novo_nome: str):
 def deletar_tarefa(indice: int):
     indice -= 1
 
-    resultado = lista_tarefas.deletar_tarefa(indice)
+    resultado = backend.lista_tarefas.deletar_tarefa(indice)
 
     if resultado:
         return {
             "mensagem": "Tarefa deletada com sucesso",
-            "tarefas": lista_tarefas.listar_tarefas()
+            "tarefas": backend.lista_tarefas.listar_tarefas()
         }
     else:
         return {
