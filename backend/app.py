@@ -5,7 +5,7 @@ import lista_tarefas
 
 app = FastAPI()
 
-app.mount("/frontend", StaticFiles(directory = "../frontend"), name = "frontend")
+app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
 
 @app.get("/", response_class=HTMLResponse)
 def home():
